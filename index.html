@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>LAB 5 - PIXABAY SEARCH</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <h1 class = "p-4 text-center bg-info"> Pixabay Image Search </h1>
+      <input type = "text" id = "search" placeholder="Type here..."> 
+      <br><br>
+      <strong>Layout: </strong>
+      <input type = "radio" name = "layout" value = "vertical"> Vertical
+      <input type = "radio" name = "layout" value = "horizontal"> Horizontal
+      <br>
+      <button id = "searchBtn"> Search </button>
+      <figure>    
+        </figure>
+    <script>
+       $("#searchBtn").on("click",imageSearch);
+
+       async function imageSearch() {
+           let userInput = $("#search").val();
+           let layout = $("input[name=layout]:checked").val();
+           let url = `https://pixabay.com/api/?key=5589438-47a0bca778bf23fc2e8c5bf3e&q=${userInput}&orientation=${layout}`;
+           let data = await getData(url);
+           $("figure").html(`<img src="${data.hits[0].webformatURL}">`);
+       }
+
+        async function getData(url) {
+        let response = await fetch(url);
+        let data = response.json();
+        return data;
+    }
+      </script>
+  </body>
+  
+</html>
