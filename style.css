@@ -1,0 +1,19 @@
+img {
+  height: 300px;
+  width: auto;
+}
+body{
+  background-repeat: no-repeat;
+    background-size: cover;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;     
+}
+
+#foo {
+  background-color: white;
+  width: 20%;
+  margin: 0 auto;
+}
